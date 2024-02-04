@@ -7,7 +7,8 @@ import { HiPencilAlt } from "react-icons/hi";
 
 const getTopics = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/topics", {
+    
+    const res = await fetch("http://localhost:3001/api/topics", {
       cache:"no-store",
     });
 
@@ -28,10 +29,11 @@ export const TopicList = async () => {
 
  
  const topics = await getTopics();
+ console.log(topics,"topics")
 
   return (
     <div>
-      {topics && topics.topics && topics.topics.length ? topics.topics.map((t) => (
+      {topics.topics.map((t) => (
         <div
           key={t._id}
           className="p-4 border border-slate-300 my-3 flex justify-between gap-5 items-start"
@@ -49,7 +51,7 @@ export const TopicList = async () => {
           </div>
         </div>
       ))
-    : <div>Topiclist component</div>
+   
     }
     </div>
   );
