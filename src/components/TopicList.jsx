@@ -4,6 +4,8 @@ import { RemoveButton } from "./RemoveButton.tsx";
 import Link from "next/link";
 import { FaEdit } from "react-icons/fa";
 import { HiPencilAlt } from "react-icons/hi";
+import { FcViewDetails } from "react-icons/fc";
+
 
 const getTopics = async () => {
   try {
@@ -40,13 +42,20 @@ export const TopicList = async () => {
         >
           <div>
             <h2 className="font-bold text-2xl">{t.title}</h2>
-            <div>{t.description}</div>
+            <div>{t.description.length > 100 ? 
+                    t.description.substring(0, 100 - 3) + "..." : 
+                    t.description
+                    }
+                    </div>
           </div>
 
           <div className="flex gap-2">
             <RemoveButton id={t._id} />
             <Link href={`/editTopic/${t._id}`}>
               <HiPencilAlt size={24} />
+            </Link>
+            <Link href={`/topicDetail/${t._id}`}>
+            <FcViewDetails size={24}/>
             </Link>
           </div>
         </div>
